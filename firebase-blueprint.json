@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "FoodItem": {
+      "title": "Food Item",
+      "description": "A dish available in the restaurant menu",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the dish" },
+        "price": { "type": "number", "description": "Price in BDT" },
+        "category": { "type": "string", "description": "Food category" },
+        "image": { "type": "string", "description": "URL to the food image" },
+        "description": { "type": "string", "description": "Short description of the food" },
+        "rating": { "type": "number", "description": "Customer rating" }
+      },
+      "required": ["name", "price", "category", "image"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order in the system",
+      "type": "object",
+      "properties": {
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "items": { 
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "quantity": { "type": "number" },
+              "price": { "type": "number" }
+            }
+          }
+        },
+        "status": { "type": "string", "enum": ["Pending", "Preparing", "Out for Delivery", "Delivered"] },
+        "total": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["customerId", "items", "status", "total"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "isAdmin": { "type": "boolean" }
+      }
+    }
+  },
+  "firestore": {
+    "/foodItems/{itemId}": {
+      "schema": "FoodItem",
+      "description": "Collection of all food items in the menu"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of all customer orders"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profile data"
+    }
+  }
+}

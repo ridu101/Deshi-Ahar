@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1a4d2e; /* Deep Green */
+  --color-secondary: #ff9f29; /* Gold/Orange */
+  --color-accent: #faf3e0; /* Off-white cream */
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-fixed bg-center text-slate-900;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  .glass-gold {
+    @apply bg-secondary/20 backdrop-blur-sm border border-secondary/30;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/40 rounded-full hover:bg-primary/60 transition-colors;
+}
+
